@@ -31,12 +31,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'internet_store.apps.InternetStoreConfig',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -80,9 +82,8 @@ DATABASES = {
         'NAME': 'mysql',
         'USER': 'root',
         'PASSWORD': 'root',
-        'PORT': 3306,
-        'HOST': 'localhost',
-
+        'PORT': '3306',
+        'HOST': '127.0.0.1',
     }
 }
 
