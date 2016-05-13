@@ -1,0 +1,14 @@
+mysql
+/usr/local/mysql/bin/mysql -u root -p
+password: root
+
+Миграции:
+
+python manage.py makemigrations
+
+
+How to delete jetbrains product:
+rm -rf "$HOME/Library/Preferences/WebIde40"
+rm -rf "$HOME/Library/Caches/WebIde40"
+rm -rf "$HOME/Library/Application Support/WebIde40"
+rm -rf "$HOME/Library/Logs/WebIde40"
