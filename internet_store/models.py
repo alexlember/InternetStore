@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-import internet_store
 
 
 class User(models.Model):
@@ -14,9 +13,6 @@ class User(models.Model):
     UserId = models.AutoField(primary_key=True)
     UserName = models.CharField(max_length=200)
     Email = models.EmailField(unique=True)
-
-    def __str__(self):  # __unicode__ on Python 2
-        return self.Email
 
 
 class Product(models.Model):
@@ -60,7 +56,7 @@ class Courier(models.Model):
 
     CourierId = models.AutoField(primary_key=True)
     UserId = models.ForeignKey(User, on_delete=models.CASCADE)
-    CourierName = models.CharField(max_length=200)
+    CourierName = models.CharField(max_length=200, unique=True)
 
 
 class MarketingSource(models.Model):

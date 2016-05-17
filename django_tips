@@ -5,7 +5,7 @@ password: root
 Миграции:
 
 python manage.py makemigrations
-
+python manage.py migrate
 
 How to delete jetbrains product:
 rm -rf "$HOME/Library/Preferences/WebIde40"

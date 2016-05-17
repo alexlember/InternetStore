@@ -7,4 +7,9 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^user/', views.user),
     url(r'^courier/', views.courier),
+    url(r'^product_type/', views.product_type),
+    url(r'^product/', views.product),
+    url(r'^marketing_source/', views.marketing_source),
+    url(r'^street/', views.street),
+    url(r'^region/', views.region)
 ]
