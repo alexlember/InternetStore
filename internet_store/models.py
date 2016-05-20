@@ -15,22 +15,22 @@ class User(models.Model):
     Email = models.EmailField(unique=True)
 
 
-class Product(models.Model):
-
-    """ Класс для табилцы в БД с товарами. """
-
-    ProductId = models.AutoField(primary_key=True)
-    ProductTypeId = models.ForeignKey('internet_store.ProductType', on_delete=models.CASCADE)
-    ProductName = models.CharField(max_length=200)
-    ProductPrice = models.DecimalField(max_digits=30, decimal_places=2)
-
-
 class ProductType(models.Model):
 
     """ Класс для табилцы в БД с типами товаров. """
 
     ProductTypeId = models.AutoField(primary_key=True)
-    ProductTypeName = models.CharField(max_length=200)
+    ProductTypeName = models.CharField(max_length=200, unique=True)
+
+
+class Product(models.Model):
+
+    """ Класс для табилцы в БД с товарами. """
+
+    ProductId = models.AutoField(primary_key=True)
+    ProductTypeId = models.ForeignKey(ProductType, on_delete=models.CASCADE)
+    ProductName = models.CharField(max_length=200, unique=True)
+    ProductPrice = models.DecimalField(max_digits=30, decimal_places=2)
 
 
 class Region(models.Model):
@@ -38,7 +38,7 @@ class Region(models.Model):
     """ Класс для табилцы в БД с районами доставки. """
 
     RegionId = models.AutoField(primary_key=True)
-    RegionName = models.CharField(max_length=200)
+    RegionName = models.CharField(max_length=200, unique=True)
 
 
 class Street(models.Model):
@@ -47,7 +47,7 @@ class Street(models.Model):
 
     StreetId = models.AutoField(primary_key=True)
     RegionId = models.ForeignKey(Region, on_delete=models.CASCADE)
-    StreetName = models.CharField(max_length=200)
+    StreetName = models.CharField(max_length=200, unique=True)
 
 
 class Courier(models.Model):
@@ -64,7 +64,7 @@ class MarketingSource(models.Model):
     """ Класс для табилцы в БД с источниками рекламы. """
 
     MarketingSourceId = models.AutoField(primary_key=True)
-    MarketingSourceName = models.CharField(max_length=200)
+    MarketingSourceName = models.CharField(max_length=200, unique=True)
 
 
 class Delivery(models.Model):
@@ -76,10 +76,12 @@ class Delivery(models.Model):
     DeliveryOrderDateTime = models.DateTimeField(auto_now_add=True)
     DeliveryCompleteDateTime = models.DateTimeField()
     ProductId = models.ForeignKey(Product, on_delete=models.CASCADE)
+    ProductTypeId = models.ForeignKey(ProductType, on_delete=models.CASCADE)
     ProductAmount = models.PositiveIntegerField()
     OrderTotalSum = models.DecimalField(max_digits=30, decimal_places=2)
     CourierId = models.ForeignKey(Courier, on_delete=models.CASCADE)
     MarketingSourceId = models.ForeignKey(MarketingSource, on_delete=models.CASCADE)
+    RegionId = models.ForeignKey(Region, on_delete=models.CASCADE)
     StreetId = models.ForeignKey(Street, on_delete=models.CASCADE)
     House = models.PositiveIntegerField()
     Building = models.PositiveIntegerField()

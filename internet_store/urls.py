@@ -11,5 +11,8 @@ urlpatterns = [
     url(r'^product/', views.product),
     url(r'^marketing_source/', views.marketing_source),
     url(r'^street/', views.street),
-    url(r'^region/', views.region)
+    url(r'^region/', views.region),
+    url(r'^generate/', views.generate),
+    url(r'^reload_deliveries/', views.reload_deliveries),
+    url(r'^delivery/', views.delivery)
 ]
