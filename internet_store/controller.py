@@ -10,6 +10,7 @@ import pytz
 from django.db.utils import IntegrityError
 from pytz import timezone
 
+from internet_store import http_requests
 from internet_store.models import User, Courier, ProductType, Product, MarketingSource, Region, Street, Delivery
 
 
@@ -331,6 +332,7 @@ def generate_delivery(user_email):
 
 def reload_all_deliveries(user_email):
     user_id = User.objects.get(Email=user_email)
+    http_requests.send_delivery(user_email)
     # delete all deliveries on DHM service
     # upload all deliveries again there
     pass

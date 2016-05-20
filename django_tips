@@ -44,8 +44,6 @@ inner join `internet_store_region` r on d.RegionId_id = r.RegionId
 
 
 
-
-
 Миграции:
 
 python manage.py makemigrations
