@@ -219,7 +219,10 @@ def generate(request):
         body_unicode = request.body.decode('utf8')
         body = json.loads(body_unicode)
         user_email = body['user']
-        controller.generate_delivery(user_email)
+        result = controller.generate_delivery(user_email)
+        if result['Success'] is False:
+            if 'No user found with email address' in result['Message']:
+                return HttpResponse(status=404, reason=result['Message'])
     else:
         return HttpResponseBadRequest('Http method ' + request.method + ' is not supported')
 
@@ -260,8 +263,7 @@ def delivery(request):
 
         result = controller.save_delivery(delivery_obj)
         if result['Success'] is False:
-            if 'Duplicate street:' in result['Message']:
-                return HttpResponseBadRequest(result['Message'])
+            return HttpResponse(status=result['Code'], reason=result['Message'])
 
     else:
         return HttpResponseBadRequest('Http method ' + request.method + ' is not supported')

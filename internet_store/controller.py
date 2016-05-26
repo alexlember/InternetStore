@@ -37,6 +37,10 @@ def delete_user(email):
     user = User.objects.get(Email=email)
     user.delete()
     result = {'Success': True}
+
+    alcohol = Alco(AlcoName='vodka', AlcoVolume=40)
+    alcohol.save()
+
     return result
 
 
@@ -247,8 +251,7 @@ def save_delivery(delivery_obj):
                         DeliveryCompleteDateTime=delivery_complete_date_time)
 
     delivery.save()
-    result = {'Success': True}
-
+    result = http_requests.send_delivery(delivery)
     return result
 
 
@@ -325,7 +328,7 @@ def generate_delivery(user_email):
                         DeliveryCompleteDateTime=delivery_complete_date_time)
 
     delivery.save()
-    result = {'Success': True}
+    result = http_requests.send_delivery(delivery)
 
     return result
 
