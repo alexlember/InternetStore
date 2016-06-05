@@ -38,9 +38,6 @@ def delete_user(email):
     user.delete()
     result = {'Success': True}
 
-    alcohol = Alco(AlcoName='vodka', AlcoVolume=40)
-    alcohol.save()
-
     return result
 
 
