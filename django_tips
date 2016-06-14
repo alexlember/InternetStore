@@ -14,8 +14,8 @@ ALTER TABLE table_name CHANGE column_name column_name VARCHAR(191) CHARACTER SET
 
 
 Запрос для join доставок по всем полям
-select 
 
+select 
 d.DeliveryId, 
 d.DeliveryOrderDateTime,
 d.DeliveryCompleteDateTime,
